@@ -1,0 +1,26 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        //暴力解法
+        // for(int i=0;i<nums.length;i++){
+        //     int temp = nums[i];
+        //     int nexttar = target-temp;
+        //     for(int j=i+1;j<nums.length;j++){
+        //         if(nums[j]==nexttar){
+        //            //return new int[]{i,j};
+        //            int[] tarn = new int[2];
+        //            tarn[0] = i;
+        //            tarn[1] = j;
+        //            return tarn;
+        //         }
+        //     }
+        // }
+        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(target-nums[i])){
+                return new int[]{map.get(target-nums[i]),i};//这两行不会写
+            }
+            map.put(nums[i],i);
+        }  
+    return new int[0];
+    }
+}
