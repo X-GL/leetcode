@@ -1,2 +1,2 @@
-# leetcode
-初级算法
+＃leetcode
+初级算法 Java
