@@ -1,0 +1,16 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        int len = digits.length;
+        for(int i=len-1;i>=0;i--){
+            digits[i]++;
+            //从最后一位加一开始，如果%10不等于0，则直接返回数组；如果%10等于0则倒数第二位加一，继续%10
+            digits[i] = digits[i]%10;
+            if(digits[i]!=0)  return digits;
+        }
+        //当原所有的数%10都等于0时，则表示数组扩大，设最高位为1
+        digits = new int[len+1];
+        digits[0] = 1;
+        return digits;
+
+    }
+}
