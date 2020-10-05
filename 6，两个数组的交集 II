@@ -1,0 +1,25 @@
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        if(nums1.length>nums2.length)//比较一个数组大小要比较长度，返回小的数组
+        return intersect(nums2,nums1);
+
+        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int num:nums1){
+            int count = map.getOrDefault(num,0)+1;//判断这个元素在nums1中出现几次
+            map.put(num,count);
+        }
+        int arr[] = new int[nums1.length];//new一个数组
+        int index = 0;
+        for(int tar:nums2){
+            int count = map.getOrDefault(tar,0);
+            //判断目标元素是否存在，存在的话count就不变，不存在就设count为默认值0
+            if(count>0){
+                arr[index++] = tar;//在arr中添加count大于0的目标元素，代表两数组中的共同元素
+                count--;
+                map.put(tar,count);//更新map中的count值
+            }
+        }
+        return Arrays.copyOfRange(arr,0,index);//将得到的arr数组从头到尾打印出来，注意index
+
+    }
+}
