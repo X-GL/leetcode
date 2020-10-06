@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        Map<Integer,Integer> row[] = new HashMap[9];
+        Map<Integer,Integer> col[] = new HashMap[9];
+        Map<Integer,Integer> box[] = new HashMap[9];
+        for(int i=0;i<9;i++){
+            row[i] = new HashMap<Integer,Integer>();//建hashmap数组
+            col[i] = new HashMap<Integer,Integer>();
+            box[i] = new HashMap<Integer,Integer>();
+        }
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                char nums = board[i][j];//数组是char的
+                if(nums!='.'){//必须用单引号
+                    //int n = (int)nums;//将char强转为int
+                    int n = nums-'0';//将char转为int，减0；
+                    int box_index = (i/3)*3+j/3;
+                    //注意行用i，列用j，小单元格用box_index
+                    row[i].put(n,row[i].getOrDefault(n,0)+1);
+                    col[j].put(n,col[j].getOrDefault(n,0)+1);
+                    box[box_index].put(n,box[box_index].getOrDefault(n,0)+1);
+
+                if(row[i].get(n)>1||col[j].get(n)>1||box[box_index].get(n)>1)
+                    return false;
+                }
+                
+            }
+        }
+    return true;
+    }
+}
